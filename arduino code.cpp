@@ -135,13 +135,15 @@ void loop() {
   delay(1000);
 
   while (true) {
-    // loop forever
+    // needs to loop forever
   }
 }
 
 
 void executeLetter(char letter) {
-  int servoIndices[servoCount] = {-1, -1, -1, -1, -1, -1}; // initialize all to -1
+
+  // initialize all to -1
+  int servoIndices[servoCount] = {-1, -1, -1, -1, -1, -1}; 
 
   switch (letter) {
     case 'A':
@@ -285,3 +287,262 @@ void executeLetter(char letter) {
       servoIndices[5] = 5;
       break;
    }
+
+  for (int i = 0; i < servoCount; i++) {
+    int servoIndex = servoIndices[i];
+    if (servoIndex >= 0) {
+      int servoPosition = getServoPositionForLetter(letter, i);
+      servos[servoIndex].write(servoPosition);
+    }
+  }
+
+  delay(letterDelay);
+}
+
+
+int getServoPositionForLetter(char letter, int servoIndex) {
+    switch (letter) {
+        case 'A':
+            if (servoIndex == 0) {
+                return 0;
+            }
+            break;
+
+
+        case 'B':
+            if (servoIndex == 0 || servoIndex == 2) {
+                return 0;
+            } else if (servoIndex == 1) {
+                return 180;
+            }
+            break;
+
+
+        case 'C':
+            if (servoIndex == 0 || servoIndex == 1) {
+                return 0;
+            } else if (servoIndex == 2) {
+                return 180;
+            }
+            break;
+
+
+        case 'D':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
+                return 0;
+            } else if (servoIndex == 2) {
+                return 90;
+            } else if (servoIndex == 4) {
+                return 90;
+            }
+            break;
+
+
+        case 'E':
+            if (servoIndex == 0 || servoIndex == 3) {
+                return 0;
+            } else if (servoIndex == 1 || servoIndex == 4) {
+                return 90;
+            }
+            break;
+
+
+        case 'F':
+            if (servoIndex == 0 || servoIndex == 2) {
+                return 0;
+            } else if (servoIndex == 1 || servoIndex == 3) {
+                return 90;
+            }
+            break;
+
+
+        case 'G':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
+                return 0;
+            } else if (servoIndex == 2) {
+                return 90;
+            } else if (servoIndex == 4) {
+                return 90;
+            }
+            break;
+
+
+        case 'H':
+          if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 3) {
+            return 0;
+          } else if (servoIndex == 4) {
+            return 180;
+          }
+          break;
+
+
+        case 'I':
+            if (servoIndex == 1) {
+                return 90;
+            }
+            break;
+
+
+        case 'J':
+            if (servoIndex == 0 || servoIndex == 2) {
+                return 0;
+            }   
+            else if (servoIndex == 1 || servoIndex == 3) {
+                return 90;
+            } else if (servoIndex == 4) {
+                return 180;
+            }
+            break;   
+
+
+        case 'K':
+            if (servoIndex == 0 || servoIndex == 2) {
+                return 0;
+            } else if (servoIndex == 1) {
+                return 180;
+            }
+            break;
+            
+
+        case 'L':
+            if (servoIndex == 0 || servoIndex == 1) {
+                return 0;
+            } else if (servoIndex == 2) {
+                return 180;
+            }
+            break;
+            
+
+        case 'M':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
+                return 0;
+            } else if (servoIndex == 2) {
+                return 90;
+            } else if (servoIndex == 4) {
+                return 90;
+            }
+            break;
+            
+
+        case 'N':
+            if (servoIndex == 0 || servoIndex == 3) {
+                return 0;
+            } else if (servoIndex == 1 || servoIndex == 4) {
+                return 90;
+            }
+            break;
+            
+
+        case 'O':
+            if (servoIndex == 0 || servoIndex == 2 || servoIndex == 3) {
+                return 0;
+            } else if (servoIndex == 1 || servoIndex == 4) {
+                return 90;
+            }
+            break;
+            
+
+        case 'P':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2) {
+                return 0;
+            } else if (servoIndex == 3) {
+                return 180;
+            }
+            break;
+            
+
+        case 'Q':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 4) {
+                return 0;
+            } else if (servoIndex == 3) {
+                return 180;
+            }
+            break;
+            
+
+        case 'R':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
+                return 0;
+            } else if (servoIndex == 2 || servoIndex == 4) {
+                return 90;
+            }
+            break;
+            
+
+        case 'S':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 4) {
+                return 0;
+            } else if (servoIndex == 3) {
+                return 180;
+            }
+            break;
+            
+
+        case 'T':
+            if (servoIndex == 0 || servoIndex == 3 || servoIndex == 4) {
+                return 0;
+            } else if (servoIndex == 1 || servoIndex == 2) {
+                return 90;
+            }
+            break;
+            
+
+        case 'U':
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 4) {
+              return 0;
+            } else if (servoIndex == 2) {
+              return 180;
+            }
+            break;
+
+
+        case 'V':
+          if (servoIndex == 0 || servoIndex == 2 || servoIndex == 5) {
+            return 90;
+          }
+          break;
+
+
+        case 'W':
+          if (servoIndex == 1 || servoIndex == 2 || servoIndex == 4 || servoIndex == 5) {
+            return 90;
+          }
+          break;
+
+
+        case 'X':
+          if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 4) {
+            return 90;
+          }
+          break;
+
+
+        case 'Y':
+          if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 5) {
+            return 90;
+          }
+          break;
+
+
+        case 'Z':
+          if (servoIndex == 0 || servoIndex == 3 || servoIndex == 4 || servoIndex == 5) {
+            return 90;
+          }
+          break;
+
+    }
+
+    // return original position if no position was returned earlier
+    return servoOriginalPositions[servoIndex];
+}
+
+
+
+
+// reset servos to 90 degree angle (default position)
+void resetServos() {
+  for (int i = 0; i < servoCount; i++) {
+    servos[i].write(90); 
+  }
+}
+
