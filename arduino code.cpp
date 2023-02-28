@@ -1,14 +1,12 @@
 #include <Servo.h>
 
-//servos connection location
+//connection pins
 const int servo1Pin = 1;
 const int servo2Pin = 2;
 const int servo3Pin = 3;
 const int servo4Pin = 4;
 const int servo5Pin = 5;
 const int servo6Pin = 6;
-
-//LED connection location
 const int LED_PIN = 7;
 
 
