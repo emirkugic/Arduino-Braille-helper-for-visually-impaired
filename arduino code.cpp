@@ -1,5 +1,6 @@
 #include <Servo.h>
 
+//servos connection location
 const int servo1Pin = 1;
 const int servo2Pin = 2;
 const int servo3Pin = 3;
@@ -7,12 +8,17 @@ const int servo4Pin = 4;
 const int servo5Pin = 5;
 const int servo6Pin = 6;
 
+//LED connection location
+const int LED_PIN = 7;
+
+
 Servo servo1;
 Servo servo2;
 Servo servo3;
 Servo servo4;
 Servo servo5;
 Servo servo6;
+
 
 const int servoCount = 6;
 Servo servos[servoCount] = {servo1, servo2, servo3, servo4, servo5, servo6};
@@ -31,111 +37,138 @@ void setup() {
 
 void loop() {
   executeLetter('A');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('B');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('C');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('D');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('E');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('F');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('G');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('H');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('I');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('J');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('K');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('L');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('M');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('N');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('O');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('P');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('Q');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('R');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('S');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('T');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('U');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('V');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('W');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('X');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('Y');
+  turnOnLed();
   resetServos();
   delay(1000);
 
   executeLetter('Z');
+  turnOnLed();
   resetServos();
   delay(1000);
 
+
   while (true) {
-    // needs to loop forever
+    // needs to loop forever so the letters don't play in a loop
   }
 }
 
@@ -146,82 +179,99 @@ void executeLetter(char letter) {
   int servoIndices[servoCount] = {-1, -1, -1, -1, -1, -1}; 
 
   switch (letter) {
+
     case 'A':
       servoIndices[0] = 0;
       break;
+
     case 'B':
       servoIndices[0] = 0;
       servoIndices[2] = 2;
       break;
+
     case 'C':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
       break;
+
     case 'D':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
       servoIndices[3] = 3;
       break;
+
     case 'E':
       servoIndices[0] = 0;
       servoIndices[3] = 3;
       break;
+
     case 'F':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
       servoIndices[2] = 2;
       break;
+
     case 'G':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
       servoIndices[2] = 2;
       servoIndices[3] = 3;
       break;
+
     case 'H':
       servoIndices[0] = 0;
       servoIndices[2] = 2;
       servoIndices[3] = 3;
       break;
+
     case 'I':
       servoIndices[1] = 1;
       servoIndices[2] = 2;
       break;
+
     case 'J':
       servoIndices[1] = 1;
       servoIndices[2] = 2;
       servoIndices[3] = 3;
       break;
+
     case 'K':
       servoIndices[0] = 0;
       servoIndices[4] = 4;
       break;
+
     case 'L':
       servoIndices[0] = 0;
       servoIndices[2] = 2;
       servoIndices[4] = 4;
       break;
+
     case 'M':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
       servoIndices[4] = 4;
       break;
+
     case 'N':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
       servoIndices[3] = 3;
       servoIndices[4] = 4;
       break;
+
     case 'O':
       servoIndices[0] = 0;
       servoIndices[3] = 3;
       servoIndices[4] = 4;
       break;
+
     case 'P':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
       servoIndices[2] = 2;
       servoIndices[4] = 4;
       break;
+
     case 'Q':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
@@ -229,61 +279,66 @@ void executeLetter(char letter) {
       servoIndices[3] = 3;
       servoIndices[4] = 4;
       break;
+
     case 'R':
       servoIndices[0] = 0;
       servoIndices[2] = 2;
       servoIndices[3] = 3;
       servoIndices[4] = 4;
       break;
+
     case 'S':
-      servoIndices[0] = 0;
       servoIndices[1] = 1;
-      servoIndices[3] = 3;
+      servoIndices[2] = 2;
       servoIndices[4] = 4;
       break;
     
     case 'T':
-      servoIndices[0] = 0;
+      servoIndices[1] = 1;
+      servoIndices[2] = 2;
       servoIndices[3] = 3;
       servoIndices[4] = 4;
       break;
     
     case 'U':
       servoIndices[0] = 0;
-      servoIndices[1] = 1;
+      servoIndices[4] = 4;
       servoIndices[5] = 5;
       break;
     
     case 'V':
       servoIndices[0] = 0;
       servoIndices[2] = 2;
+      servoIndices[4] = 4;
       servoIndices[5] = 5;
     break;
     
     case 'W':
       servoIndices[1] = 1;
+      servoIndices[2] = 2;
       servoIndices[3] = 3;
-      servoIndices[4] = 4;
       servoIndices[5] = 5;
       break;
       
     case 'X':
       servoIndices[0] = 0;
       servoIndices[1] = 1;
-      servoIndices[2] = 2;
+      servoIndices[4] = 4;
       servoIndices[5] = 5;
       break;
       
     case 'Y':
       servoIndices[0] = 0;
+      servoIndices[1] = 1;
       servoIndices[3] = 3;
+      servoIndices[4] = 4;
       servoIndices[5] = 5;
       break;
       
     case 'Z':
       servoIndices[0] = 0;
-      servoIndices[1] = 1;
       servoIndices[3] = 3;
+      servoIndices[4] = 4;
       servoIndices[5] = 5;
       break;
    }
@@ -299,9 +354,10 @@ void executeLetter(char letter) {
   delay(letterDelay);
 }
 
-
+//this function moves the servos to their position
 int getServoPositionForLetter(char letter, int servoIndex) {
     switch (letter) {
+      
         case 'A':
             if (servoIndex == 0) {
                 return 0;
@@ -312,8 +368,6 @@ int getServoPositionForLetter(char letter, int servoIndex) {
         case 'B':
             if (servoIndex == 0 || servoIndex == 2) {
                 return 0;
-            } else if (servoIndex == 1) {
-                return 180;
             }
             break;
 
@@ -321,8 +375,6 @@ int getServoPositionForLetter(char letter, int servoIndex) {
         case 'C':
             if (servoIndex == 0 || servoIndex == 1) {
                 return 0;
-            } else if (servoIndex == 2) {
-                return 180;
             }
             break;
 
@@ -330,10 +382,6 @@ int getServoPositionForLetter(char letter, int servoIndex) {
         case 'D':
             if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
                 return 0;
-            } else if (servoIndex == 2) {
-                return 90;
-            } else if (servoIndex == 4) {
-                return 90;
             }
             break;
 
@@ -341,28 +389,20 @@ int getServoPositionForLetter(char letter, int servoIndex) {
         case 'E':
             if (servoIndex == 0 || servoIndex == 3) {
                 return 0;
-            } else if (servoIndex == 1 || servoIndex == 4) {
-                return 90;
             }
             break;
 
 
         case 'F':
-            if (servoIndex == 0 || servoIndex == 2) {
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2) {
                 return 0;
-            } else if (servoIndex == 1 || servoIndex == 3) {
-                return 90;
             }
             break;
 
 
         case 'G':
-            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 3) {
                 return 0;
-            } else if (servoIndex == 2) {
-                return 90;
-            } else if (servoIndex == 4) {
-                return 90;
             }
             break;
 
@@ -370,163 +410,132 @@ int getServoPositionForLetter(char letter, int servoIndex) {
         case 'H':
           if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 3) {
             return 0;
-          } else if (servoIndex == 4) {
-            return 180;
           }
           break;
 
 
         case 'I':
-            if (servoIndex == 1) {
-                return 90;
+            if (servoIndex == 1 || servoIndex == 2) {
+                return 0;
             }
             break;
 
 
         case 'J':
-            if (servoIndex == 0 || servoIndex == 2) {
+            if (servoIndex == 1 || servoIndex == 2 || servoIndex == 3) {
                 return 0;
-            }   
-            else if (servoIndex == 1 || servoIndex == 3) {
-                return 90;
-            } else if (servoIndex == 4) {
-                return 180;
             }
-            break;   
+            break; 
 
 
         case 'K':
-            if (servoIndex == 0 || servoIndex == 2) {
+            if (servoIndex == 0 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 1) {
-                return 180;
             }
             break;
             
+            
 
         case 'L':
-            if (servoIndex == 0 || servoIndex == 1) {
+            if (servoIndex == 0 || servoIndex == 2 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 2) {
-                return 180;
             }
             break;
             
 
         case 'M':
-            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 2) {
-                return 90;
-            } else if (servoIndex == 4) {
-                return 90;
             }
             break;
-            
 
         case 'N':
-            if (servoIndex == 0 || servoIndex == 3) {
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 1 || servoIndex == 4) {
-                return 90;
             }
             break;
             
 
         case 'O':
-            if (servoIndex == 0 || servoIndex == 2 || servoIndex == 3) {
+            if (servoIndex == 0 || servoIndex == 3 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 1 || servoIndex == 4) {
-                return 90;
             }
             break;
             
 
         case 'P':
-            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2) {
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 3) {
-                return 180;
             }
             break;
             
 
         case 'Q':
-            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 4) {
+            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 3 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 3) {
-                return 180;
             }
             break;
             
 
         case 'R':
-            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3) {
+            if (servoIndex == 0 || servoIndex == 2 || servoIndex == 3 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 2 || servoIndex == 4) {
-                return 90;
             }
             break;
             
 
         case 'S':
-            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 4) {
+            if (servoIndex == 1 || servoIndex == 2 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 3) {
-                return 180;
             }
             break;
             
 
         case 'T':
-            if (servoIndex == 0 || servoIndex == 3 || servoIndex == 4) {
+            if (servoIndex == 1 || servoIndex == 2 || servoIndex == 3 || servoIndex == 4) {
                 return 0;
-            } else if (servoIndex == 1 || servoIndex == 2) {
-                return 90;
             }
             break;
             
 
         case 'U':
-            if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 4) {
+            if (servoIndex == 0 || servoIndex == 4 || servoIndex == 5) {
               return 0;
-            } else if (servoIndex == 2) {
-              return 180;
             }
             break;
 
 
         case 'V':
-          if (servoIndex == 0 || servoIndex == 2 || servoIndex == 5) {
-            return 90;
+          if (servoIndex == 0 || servoIndex == 2 || servoIndex == 4 || servoIndex == 5) {
+            return 0;
           }
           break;
 
 
         case 'W':
-          if (servoIndex == 1 || servoIndex == 2 || servoIndex == 4 || servoIndex == 5) {
-            return 90;
+          if (servoIndex == 1 || servoIndex == 2 || servoIndex == 3 || servoIndex == 4 || servoIndex == 5) {
+            return 0;
           }
           break;
 
 
         case 'X':
-          if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 4) {
-            return 90;
+          if (servoIndex == 0 || servoIndex == 1 || servoIndex == 4 || servoIndex == 5) {
+            return 0;
           }
           break;
 
 
         case 'Y':
-          if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 5) {
-            return 90;
+          if (servoIndex == 0 || servoIndex == 1 || servoIndex == 3 || servoIndex == 4 || servoIndex == 5) {
+            return 0;
           }
           break;
 
 
         case 'Z':
           if (servoIndex == 0 || servoIndex == 3 || servoIndex == 4 || servoIndex == 5) {
-            return 90;
+            return 0;
           }
           break;
 
@@ -546,3 +555,9 @@ void resetServos() {
   }
 }
 
+//turn the LED for 1 sec
+void turnOnLed() {
+  digitalWrite(LED_PIN, HIGH);   
+  delay(1000);                   
+  digitalWrite(LED_PIN, LOW);    
+}
