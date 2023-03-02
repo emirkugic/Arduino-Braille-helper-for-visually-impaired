@@ -33,143 +33,17 @@ void setup() {
 }
 
 
+//moves all the servos
 void loop() {
-  executeLetter('A');
-  turnOnLed();
-  resetServos();
-  delay(1000);
+  String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  executeLetter('B');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('C');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('D');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('E');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('F');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('G');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('H');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('I');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('J');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('K');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('L');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('M');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('N');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('O');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('P');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('Q');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('R');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('S');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('T');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('U');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('V');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('W');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('X');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('Y');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-  executeLetter('Z');
-  turnOnLed();
-  resetServos();
-  delay(1000);
-
-
-  while (true) {
-    // needs to loop forever so the letters don't play in a loop
+  for (int i = 0; i < 26; i++) {
+    executeLetter(letters[i]);
+    turnOnLED();
+    resetServos();
+    delay(1000);
   }
 }
-
 
 void executeLetter(char letter) {
 
@@ -554,7 +428,7 @@ void resetServos() {
 }
 
 //turn the LED for 1 sec
-void turnOnLed() {
+void turnOnLED() {
   digitalWrite(LED_PIN, HIGH);   
   delay(1000);                   
   digitalWrite(LED_PIN, LOW);    
