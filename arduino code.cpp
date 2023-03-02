@@ -10,11 +10,17 @@ const int servo6Pin = 6;
 const int LED_PIN = 7;
 
 
+
+
+//prekidač
+
 int switchPin = 11;
 bool switchState = false;
 
-const int pauseTime = 250;
 
+
+
+const int pauseTime = 250;
 
 
 Servo servo1, servo2, servo3, servo4, servo5, servo6;
@@ -65,8 +71,6 @@ void loop() {
 }
 
 
- 
-
 // runs the servos into their position
 void runDevice() {
   String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -84,6 +88,22 @@ void runDevice() {
   }
 }
 
+
+//random letter picker
+void randomMode() {
+  String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  int len = letters.length();
+
+  for (int i = 0; i < len; i++) {
+    int index = random(len); // generate a random index between 0 and 25
+    executeLetter(letters[index]);
+    resetServos();
+    delay(pauseTime);
+    if (digitalRead(switchPin) == HIGH) {
+      break;
+    }
+  }
+}
 
 
 
@@ -468,6 +488,9 @@ void resetServos() {
     servos[i].write(90); 
   }
 }
+
+
+
 
 //turn the LED for 1 sec
 void turnOnLED() {
