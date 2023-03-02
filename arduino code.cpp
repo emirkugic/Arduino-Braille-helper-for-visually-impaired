@@ -18,6 +18,8 @@ Servo servos[servoCount] = {servo1, servo2, servo3, servo4, servo5, servo6};
 int servoPins[servoCount] = {servo1Pin, servo2Pin, servo3Pin, servo4Pin, servo5Pin, servo6Pin};
 int servoOriginalPositions[servoCount];
 
+
+//delay between letters
 const int letterDelay = 1500;
 
 void setup() {
