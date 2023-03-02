@@ -10,6 +10,13 @@ const int servo6Pin = 6;
 const int LED_PIN = 7;
 
 
+int switchPin = 11;
+bool switchState = false;
+
+const int pauseTime = 250;
+
+
+
 Servo servo1, servo2, servo3, servo4, servo5, servo6;
 
 
@@ -20,28 +27,64 @@ int servoOriginalPositions[servoCount];
 
 
 //delay between letters
-const int letterDelay = 1500;
+const int letterDelay = pauseTime;
 
+
+//setup function
 void setup() {
   for (int i = 0; i < servoCount; i++) {
     servos[i].attach(servoPins[i]);
     servoOriginalPositions[i] = servos[i].read(); // store original servo positions
   }
+  pinMode(switchPin, INPUT_PULLUP);
 }
 
 
+bool deviceOn = false;
+bool shouldStop = false;
 
-//moves all the servos
+//main function
+
 void loop() {
+  while (true) {
+    bool switchState = digitalRead(switchPin);
+
+    // Turn on the device
+    if (switchState == LOW && !deviceOn) {
+      deviceOn = true;
+      shouldStop = false;
+      runDevice();
+    }
+    // Turn off the device
+    else if (switchState == HIGH && deviceOn) {
+      deviceOn = false;
+      shouldStop = true;
+      resetServos();
+    }
+  }
+}
+
+
+ 
+
+// runs the servos into their position
+void runDevice() {
   String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   for (int i = 0; i < 26; i++) {
     executeLetter(letters[i]);
-    turnOnLED();
     resetServos();
-    delay(1000);
+    delay(pauseTime);
+    if (digitalRead(switchPin) == HIGH) {
+      break;
+    }
+    if (i>26){
+      break;
+    }
   }
 }
+
+
 
 
 
@@ -226,7 +269,7 @@ void executeLetter(char letter) {
   delay(letterDelay);
 }
 
-//this function moves the servos to their position
+//this function tells the arduino which servo to move for which letter
 int getServoPositionForLetter(char letter, int servoIndex) {
     switch (letter) {
       
@@ -419,7 +462,6 @@ int getServoPositionForLetter(char letter, int servoIndex) {
 
 
 
-
 // reset servos to 90 degree angle (default position)
 void resetServos() {
   for (int i = 0; i < servoCount; i++) {
@@ -430,6 +472,9 @@ void resetServos() {
 //turn the LED for 1 sec
 void turnOnLED() {
   digitalWrite(LED_PIN, HIGH);   
-  delay(1000);                   
+}
+
+
+void turnOffLED() {            
   digitalWrite(LED_PIN, LOW);    
 }
