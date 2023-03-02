@@ -10,12 +10,7 @@ const int servo6Pin = 6;
 const int LED_PIN = 7;
 
 
-Servo servo1;
-Servo servo2;
-Servo servo3;
-Servo servo4;
-Servo servo5;
-Servo servo6;
+Servo servo1, servo2, servo3, servo4, servo5, servo6;
 
 
 const int servoCount = 6;
@@ -33,6 +28,7 @@ void setup() {
 }
 
 
+
 //moves all the servos
 void loop() {
   String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -44,6 +40,8 @@ void loop() {
     delay(1000);
   }
 }
+
+
 
 void executeLetter(char letter) {
 
