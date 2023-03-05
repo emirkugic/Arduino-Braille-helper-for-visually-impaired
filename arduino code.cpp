@@ -85,8 +85,6 @@ void runDevice() {
 while (digitalRead(pausePin) == HIGH) {
   delay(50);
 }
-
-
     resetServos();
     delay(pauseTime);
     if (digitalRead(switchPin) == HIGH) {
@@ -97,7 +95,6 @@ while (digitalRead(pausePin) == HIGH) {
     }
   }
 }
-
 
 
 
