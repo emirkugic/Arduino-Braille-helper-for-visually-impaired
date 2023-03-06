@@ -142,8 +142,7 @@ void randomMode() {
 }
 
 
-
-
+//will be optimized later
 void executeLetter(char letter) {
 
   // initialize all to -1
