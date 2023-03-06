@@ -59,7 +59,7 @@ void loop(){
 
 
 
-
+//pause button function
 bool paused = digitalRead(pausePin);
 void pauseButton(){
   while(true){
@@ -69,8 +69,6 @@ void pauseButton(){
       else{
         Serial.print("nothing happened");
       }
-
-
   }
 }
 
@@ -105,6 +103,13 @@ void runDevice() {
 
   for (int i = 0; i < 26; i++) {
     executeLetter(letters[i]);
+
+// wait for pause button to be pressed
+while (digitalRead(pausePin) == HIGH) {
+  delay(50);
+}
+
+
     resetServos();
     delay(pauseTime);
     if (digitalRead(switchPin) == HIGH) {
@@ -115,6 +120,9 @@ void runDevice() {
     }
   }
 }
+
+
+
 
 
 //random letter picker
