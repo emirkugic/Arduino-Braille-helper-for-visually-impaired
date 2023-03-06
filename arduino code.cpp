@@ -10,20 +10,29 @@ const int servo6Pin = 6;
 const int LED_PIN = 7;
 
 
+
+
+//prekidač
+int switchPin = 11;
+bool switchState = false;
+
+//pause button pin
 const int pausePin = 8;
 
-//switch pin
-int switchPin = 11;
 
 
+const int pauseTime = 300;
 
-//settings constants and instances for electronics, etc
-const int pauseTime = 250;
+
 Servo servo1, servo2, servo3, servo4, servo5, servo6;
+
+
 const int servoCount = 6;
 Servo servos[servoCount] = {servo1, servo2, servo3, servo4, servo5, servo6};
 int servoPins[servoCount] = {servo1Pin, servo2Pin, servo3Pin, servo4Pin, servo5Pin, servo6Pin};
 int servoOriginalPositions[servoCount];
+
+
 //delay between letters
 const int letterDelay = pauseTime;
 
@@ -39,21 +48,38 @@ void setup() {
 }
 
 
-
+bool deviceOn = false;
+bool shouldStop = false;
 
 //main function
 void loop(){
-  powerSwitch();
-
+  powerButton();
+  pauseButton();
 }
 
 
-//power switch
-bool deviceOn = false;
-bool shouldStop = false;
-bool switchState = false;
-//function for the on and off switch
-void powerSwitch() {
+
+
+bool paused = digitalRead(pausePin);
+void pauseButton(){
+  while(true){
+    if (paused){
+      Serial.print("now its paused");
+      }
+      else{
+        Serial.print("nothing happened");
+      }
+
+
+  }
+}
+
+
+
+
+
+//power button
+void powerButton() {
   while (true) {
     bool switchState = digitalRead(switchPin);
 
@@ -73,18 +99,12 @@ void powerSwitch() {
 }
 
 
-
-
-// runs the device
+// runs the servos into their position
 void runDevice() {
   String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
   for (int i = 0; i < 26; i++) {
     executeLetter(letters[i]);
-
-// wait for pause button to be pressed
-while (digitalRead(pausePin) == HIGH) {
-  delay(50);
-}
     resetServos();
     delay(pauseTime);
     if (digitalRead(switchPin) == HIGH) {
@@ -95,8 +115,6 @@ while (digitalRead(pausePin) == HIGH) {
     }
   }
 }
-
-
 
 
 //random letter picker
