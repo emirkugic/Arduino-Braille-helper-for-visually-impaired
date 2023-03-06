@@ -13,14 +13,15 @@ const int LED_PIN = 7;
 
 
 //prekidač
-
 int switchPin = 11;
 bool switchState = false;
 
+//pause button pin
+const int pausePin = 8;
 
 
 
-const int pauseTime = 250;
+const int pauseTime = 300;
 
 
 Servo servo1, servo2, servo3, servo4, servo5, servo6;
@@ -43,6 +44,7 @@ void setup() {
     servoOriginalPositions[i] = servos[i].read(); // store original servo positions
   }
   pinMode(switchPin, INPUT_PULLUP);
+  pinMode(pausePin, INPUT_PULLUP);
 }
 
 
@@ -50,8 +52,34 @@ bool deviceOn = false;
 bool shouldStop = false;
 
 //main function
+void loop(){
+  powerButton();
+  pauseButton();
+}
 
-void loop() {
+
+
+
+bool paused = digitalRead(pausePin);
+void pauseButton(){
+  while(true){
+    if (paused){
+      Serial.print("now its paused");
+      }
+      else{
+        Serial.print("nothing happened");
+      }
+
+
+  }
+}
+
+
+
+
+
+//power button
+void powerButton() {
   while (true) {
     bool switchState = digitalRead(switchPin);
 
