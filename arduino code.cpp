@@ -125,7 +125,7 @@ while (digitalRead(pausePin) == HIGH) {
 
 
 
-//random letter picker
+//random letter picker, not in use yet
 void randomMode() {
   String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   int len = letters.length();
