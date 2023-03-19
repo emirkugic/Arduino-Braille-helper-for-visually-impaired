@@ -7,32 +7,21 @@ const int servo3Pin = 3;
 const int servo4Pin = 4;
 const int servo5Pin = 5;
 const int servo6Pin = 6;
+
 const int LED_PIN = 7;
 
-
-
-
-//prekidač
+//switch pin
 int switchPin = 11;
-bool switchState = false;
-
-//pause button pin
-const int pausePin = 8;
 
 
 
-const int pauseTime = 300;
-
-
+//settings constants and instances for electronics, etc
+const int pauseTime = 250;
 Servo servo1, servo2, servo3, servo4, servo5, servo6;
-
-
 const int servoCount = 6;
 Servo servos[servoCount] = {servo1, servo2, servo3, servo4, servo5, servo6};
 int servoPins[servoCount] = {servo1Pin, servo2Pin, servo3Pin, servo4Pin, servo5Pin, servo6Pin};
 int servoOriginalPositions[servoCount];
-
-
 //delay between letters
 const int letterDelay = pauseTime;
 
@@ -44,40 +33,25 @@ void setup() {
     servoOriginalPositions[i] = servos[i].read(); // store original servo positions
   }
   pinMode(switchPin, INPUT_PULLUP);
-  pinMode(pausePin, INPUT_PULLUP);
 }
+
+
+
+
+//main function
+void loop(){
+  powerSwitch();
+}
+
+
 
 
 bool deviceOn = false;
 bool shouldStop = false;
+bool switchState = false;
 
-//main function
-void loop(){
-  powerButton();
-  pauseButton();
-}
-
-
-
-//pause button function
-bool paused = digitalRead(pausePin);
-void pauseButton(){
-  while(true){
-    if (paused){
-      Serial.print("now its paused");
-      }
-      else{
-        Serial.print("nothing happened");
-      }
-  }
-}
-
-
-
-
-
-//power button
-void powerButton() {
+//function for the on and off switch
+void powerSwitch() {
   while (true) {
     bool switchState = digitalRead(switchPin);
 
@@ -97,7 +71,9 @@ void powerButton() {
 }
 
 
-// runs the servos into their position
+
+
+// runs the device
 void runDevice() {
   String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -117,205 +93,47 @@ void runDevice() {
 
 
 
+const int servoIndices[26][6] = {
+  {0, -1, -1, -1, -1, -1}, // A
+  {0, -1, 2, -1, -1, -1}, // B
+  {0, 1, -1, -1, -1, -1}, // C
+  {0, 1, -1, 3, -1, -1}, // D
+  {0, -1, -1, 3, -1, -1}, // E
+  {0, 1, 2, -1, -1, -1}, // F
+  {0, 1, 2, 3, -1, -1}, // G
+  {0, -1, 2, 3, -1, -1}, // H
+  {-1, 1, 2, -1, -1, -1}, // I
+  {-1, 1, 2, -1, -1, -1}, // J
+  {0, -1, -1, -1, -1, 5}, // K
+  {0, -1, 2, -1, 4, -1}, // L
+  {0, 1, -1, -1, 4, -1}, // M
+  {0, 1, -1, 3, 4, -1}, // N
+  {0, -1, -1, 3, 4, -1}, // O
+  {0, 1, 2, -1, 4, -1}, // P
+  {0, 1, 2, 3, 4, -1}, // Q
+  {0, -1, 2, 3, 4, -1}, // R
+  {-1, 1, 2, -1, 4, -1}, // S
+  {-1, 1, 2, 3, 4, -1}, // T
+  {0, -1, -1, -1, 4, 5}, // U
+  {0, -1, 2, -3, 4, 5}, // V
+  {-1, 1, 2, 3, -1, 5}, // W
+  {0, 1, -1, -1, 4, 5}, // X
+  {0, 1, -1, 3, 4, 5}, // Y
+  {0, -1, -1, 3, 4, 5} // Z
+};
 
-//random letter picker, not in use yet
-void randomMode() {
-  String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  int len = letters.length();
-
-  for (int i = 0; i < len; i++) {
-    int index = random(len); // generate a random index between 0 and 25
-    executeLetter(letters[index]);
-    resetServos();
-    delay(pauseTime);
-    if (digitalRead(switchPin) == HIGH) {
-      break;
-    }
-  }
-}
-
-
-//will be optimized later
 void executeLetter(char letter) {
-
-  // initialize all to -1
-  int servoIndices[servoCount] = {-1, -1, -1, -1, -1, -1}; 
-
-  switch (letter) {
-
-    case 'A':
-      servoIndices[0] = 0;
-      break;
-
-    case 'B':
-      servoIndices[0] = 0;
-      servoIndices[2] = 2;
-      break;
-
-    case 'C':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      break;
-
-    case 'D':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[3] = 3;
-      break;
-
-    case 'E':
-      servoIndices[0] = 0;
-      servoIndices[3] = 3;
-      break;
-
-    case 'F':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      break;
-
-    case 'G':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      servoIndices[3] = 3;
-      break;
-
-    case 'H':
-      servoIndices[0] = 0;
-      servoIndices[2] = 2;
-      servoIndices[3] = 3;
-      break;
-
-    case 'I':
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      break;
-
-    case 'J':
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      servoIndices[3] = 3;
-      break;
-
-    case 'K':
-      servoIndices[0] = 0;
-      servoIndices[4] = 4;
-      break;
-
-    case 'L':
-      servoIndices[0] = 0;
-      servoIndices[2] = 2;
-      servoIndices[4] = 4;
-      break;
-
-    case 'M':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[4] = 4;
-      break;
-
-    case 'N':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[3] = 3;
-      servoIndices[4] = 4;
-      break;
-
-    case 'O':
-      servoIndices[0] = 0;
-      servoIndices[3] = 3;
-      servoIndices[4] = 4;
-      break;
-
-    case 'P':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      servoIndices[4] = 4;
-      break;
-
-    case 'Q':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      servoIndices[3] = 3;
-      servoIndices[4] = 4;
-      break;
-
-    case 'R':
-      servoIndices[0] = 0;
-      servoIndices[2] = 2;
-      servoIndices[3] = 3;
-      servoIndices[4] = 4;
-      break;
-
-    case 'S':
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      servoIndices[4] = 4;
-      break;
-    
-    case 'T':
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      servoIndices[3] = 3;
-      servoIndices[4] = 4;
-      break;
-    
-    case 'U':
-      servoIndices[0] = 0;
-      servoIndices[4] = 4;
-      servoIndices[5] = 5;
-      break;
-    
-    case 'V':
-      servoIndices[0] = 0;
-      servoIndices[2] = 2;
-      servoIndices[4] = 4;
-      servoIndices[5] = 5;
-    break;
-    
-    case 'W':
-      servoIndices[1] = 1;
-      servoIndices[2] = 2;
-      servoIndices[3] = 3;
-      servoIndices[5] = 5;
-      break;
-      
-    case 'X':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[4] = 4;
-      servoIndices[5] = 5;
-      break;
-      
-    case 'Y':
-      servoIndices[0] = 0;
-      servoIndices[1] = 1;
-      servoIndices[3] = 3;
-      servoIndices[4] = 4;
-      servoIndices[5] = 5;
-      break;
-      
-    case 'Z':
-      servoIndices[0] = 0;
-      servoIndices[3] = 3;
-      servoIndices[4] = 4;
-      servoIndices[5] = 5;
-      break;
-   }
-
+  int* servoIndicesForLetter = servoIndices[letter - 'A'];
   for (int i = 0; i < servoCount; i++) {
-    int servoIndex = servoIndices[i];
+    int servoIndex = servoIndicesForLetter[i];
     if (servoIndex >= 0) {
       int servoPosition = getServoPositionForLetter(letter, i);
       servos[servoIndex].write(servoPosition);
     }
   }
-
   delay(letterDelay);
 }
+
 
 //this function tells the arduino which servo to move for which letter
 int getServoPositionForLetter(char letter, int servoIndex) {
@@ -361,8 +179,6 @@ int getServoPositionForLetter(char letter, int servoIndex) {
                 return 0;
             }
             break;
-
-
         case 'G':
             if (servoIndex == 0 || servoIndex == 1 || servoIndex == 2 || servoIndex == 3) {
                 return 0;
@@ -502,12 +318,12 @@ int getServoPositionForLetter(char letter, int servoIndex) {
           }
           break;
 
+
     }
 
     // return original position if no position was returned earlier
     return servoOriginalPositions[servoIndex];
 }
-
 
 
 // reset servos to 90 degree angle (default position)
