@@ -1,4 +1,4 @@
-# arduino-code
+# Arduino code for BHFF Passion Project
 
 This code is written in the Arduino language and is designed to control a robotic arm that uses six servos. It uses the Servo library to control the servos and the digitalRead function to read the state of a switch that turns the device on and off.
 
