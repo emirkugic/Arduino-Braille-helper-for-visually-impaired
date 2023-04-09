@@ -2,7 +2,7 @@
 
 This code is written in the Arduino language and is designed to control a robotic arm that uses six servos. It uses the Servo library to control the servos and the digitalRead function to read the state of a switch that turns the device on and off.
 
-The connection pins for the six servos are defined as constants servo1Pin through servo6Pin, with their values set to 1 through 6, respectively. The pin number for an LED that is used to indicate when the device is on is also defined as a constant LED_PIN, with its value set to 7.
+The connection pins for the six servos are defined as constants servo1Pin through servo6Pin, with their values set to 1 through 6, respectively.
 
 The setup() function initializes the servos by attaching them to their corresponding pins using the attach() method of the Servo library. The current position of each servo is stored in an array servoOriginalPositions for later use.
 
