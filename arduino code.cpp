@@ -8,8 +8,6 @@ const int servo4Pin = 4;
 const int servo5Pin = 5;
 const int servo6Pin = 6;
 
-const int LED_PIN = 7;
-
 //switch pin
 int switchPin = 11;
 
@@ -335,12 +333,3 @@ void resetServos() {
 
 
 
-
-
-void turnOnLED() {
-  digitalWrite(LED_PIN, HIGH);   
-}
-
-void turnOffLED() {            
-  digitalWrite(LED_PIN, LOW);    
-}
