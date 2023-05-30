@@ -61,7 +61,6 @@ void runDevice() {
 }
 
 const int servoIndices[26][6] = {
-  // Your servo indices...
   {0, -1, -1, -1, -1, -1}, // A
   {0, -1, 2, -1, -1, -1}, // B
   {0, 1, -1, -1, -1, -1}, // C
